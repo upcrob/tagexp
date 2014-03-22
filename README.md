@@ -32,8 +32,8 @@ as individual tags.  Note that if multiple tags are separated by spaces in an ex
 they are treated as if they had an AND operator between them.
 
 By default, tag searches are case-sensitive.  Setting the 'caseSensitive' parameter
-on the `evaluate()` method will cause searching to be case-insensitive.  Note that
-doing so may reduce the performance of the evaluation.
+on the `evaluate()` method to false will cause searching to be case-insensitive.
+Note that doing so may reduce the performance of the evaluation.
 
 ## Building
 
