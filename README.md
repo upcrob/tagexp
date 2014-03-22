@@ -18,7 +18,7 @@ Suppose that the document mentioned above has its tags stored in a Java Set call
 the tags 'Minnesota' and 'Vikings' but not 'Sports':
 
 	Evaluator eval = new Evaluator();	// Get an Evaluator instance
-	boolean isAboutHistoricalVikings = eval.evaluate("(Minnesota and Vikings) and not Sports");
+	boolean isAboutHistoricalVikings = eval.evaluate("(Minnesota and Vikings) and not Sports", tags);
 	
 The `Evaluator` class supports the following operators.  Note that these are case-sensitive:
 
