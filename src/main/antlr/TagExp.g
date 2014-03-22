@@ -1,4 +1,4 @@
-grammar SetExp;
+grammar TagExp;
 
 @header {
 	package com.upcrob.tagexp;
