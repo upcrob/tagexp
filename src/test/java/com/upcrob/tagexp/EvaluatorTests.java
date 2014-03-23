@@ -125,4 +125,39 @@ public class EvaluatorTests {
 	public void testCaseInsensitive() {
 		assertTrue(eval.evaluate("A", tags, false));
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullExpression() {
+		eval.evaluate(null, tags);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullCollection() {
+		eval.evaluate("a or b", null);
+	}
+	
+	@Test(expected=ParseException.class)
+	public void testDoubleKeyword() {
+		eval.evaluate("a or and b", tags);
+	}
+	
+	@Test(expected=ParseException.class)
+	public void testNoOperand() {
+		eval.evaluate("or", tags);
+	}
+	
+	@Test(expected=ParseException.class)
+	public void testUnexpectedEnding() {
+		eval.evaluate("a and", tags);
+	}
+	
+	@Test(expected=ParseException.class)
+	public void testUnexpectedStart() {
+		eval.evaluate("and b", tags);
+	}
+	
+	@Test
+	public void testEmptyCollection() {
+		assertFalse(eval.evaluate("a or b", new HashSet<String>()));
+	}
 }

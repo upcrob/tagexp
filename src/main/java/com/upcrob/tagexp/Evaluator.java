@@ -29,7 +29,7 @@ public class Evaluator {
 	 */
 	public boolean evaluate(String expression, Collection<String> tags) {
 		// Setup lexer and parser
-		TagExpLexer lexer = new TagExpLexer(new ANTLRStringStream(expression));
+		/*TagExpLexer lexer = new TagExpLexer(new ANTLRStringStream(expression));
 		TagExpParser parser = new TagExpParser(new CommonTokenStream(lexer));
 		
 		// Build parse tree
@@ -41,7 +41,10 @@ public class Evaluator {
 		}
 
 		// Evaluate tree
-		return eval(root, new HashSet<String>(tags), true);
+		return eval(root, new HashSet<String>(tags), true);*/
+		
+		// Evaluate, case-sensitive
+		return evaluate(expression, tags, true);
 	}
 	
 	/**
@@ -55,6 +58,11 @@ public class Evaluator {
 	 * @throws ParseException Thrown if the expression could not be parsed.
 	 */
 	public boolean evaluate(String expression, Collection<String> tags, boolean caseSensitive) {
+		// Verify arguments are non-null
+		if (expression == null || tags == null) {
+			throw new IllegalArgumentException("Input arguments must be non-null.");
+		}
+		
 		// Setup lexer and parser
 		TagExpLexer lexer = new TagExpLexer(new ANTLRStringStream(expression));
 		TagExpParser parser = new TagExpParser(new CommonTokenStream(lexer));

@@ -8,8 +8,15 @@ grammar TagExp;
 	package com.upcrob.tagexp;
 }
 
+@members {
+  @Override
+  public void emitErrorMessage(String message) {
+    throw new ParseException("Parse error: " + message);
+  }
+}
+
 eval returns [Node value]
-	: n=or_exp { $value = $n.value; }
+	: n=or_exp EOF { $value = $n.value; }
 	;
 
 or_exp returns [Node value]
@@ -17,7 +24,7 @@ or_exp returns [Node value]
 		$value = new Node(NodeType.OR);
 	}
 	: a=xor_exp { $value.children.add($a.value); }
-		(op=('or') b=xor_exp {
+		(op='or' b=xor_exp {
 			$value.children.add($b.value);
 		})*
 	;
