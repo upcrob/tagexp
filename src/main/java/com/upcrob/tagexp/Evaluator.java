@@ -28,21 +28,6 @@ public class Evaluator {
 	 * @throws ParseException Thrown if the expression could not be parsed.
 	 */
 	public boolean evaluate(String expression, Collection<String> tags) {
-		// Setup lexer and parser
-		/*TagExpLexer lexer = new TagExpLexer(new ANTLRStringStream(expression));
-		TagExpParser parser = new TagExpParser(new CommonTokenStream(lexer));
-		
-		// Build parse tree
-		Node root;
-		try {
-			root = parser.eval();
-		} catch (RecognitionException e) {
-			throw new ParseException("Invalid expression.", e);
-		}
-
-		// Evaluate tree
-		return eval(root, new HashSet<String>(tags), true);*/
-		
 		// Evaluate, case-sensitive
 		return evaluate(expression, tags, true);
 	}
