@@ -24,6 +24,7 @@ public class EvaluatorTests {
 		tags.add("b");
 		tags.add("c");
 		tags.add("d");
+		tags.add("y-z");
 	}
 	
 	@Test
@@ -159,5 +160,15 @@ public class EvaluatorTests {
 	@Test
 	public void testEmptyCollection() {
 		assertFalse(eval.evaluate("a or b", new HashSet<String>()));
+	}
+
+	@Test
+	public void testInnerDash() {
+		assertTrue(eval.evaluate("y-z", tags));
+	}
+
+	@Test
+	public void testStartingDash() {
+		assertTrue(eval.evaluate("a -z", tags));
 	}
 }
