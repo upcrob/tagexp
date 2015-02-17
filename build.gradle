@@ -1,6 +1,11 @@
-apply plugin: 'java'
-apply plugin: 'antlr'
+plugins {
+	id 'java'
+	id 'antlr'
+	id 'com.jfrog.bintray' version '1.0'
+	id 'maven-publish'
+}
 
+group = 'com.upcrob.tagexp'
 version = '1.1.0'
 
 repositories {
@@ -13,6 +18,52 @@ dependencies {
 	compile 'org.antlr:antlr:3.5.1'
 
 	antlr 'org.antlr:antlr:3.5.1'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar, javadocJar
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+			artifact sourcesJar
+			artifact javadocJar
+		}
+	}
+}
+
+bintray {
+	user = project.properties['bintray.user']
+	key = project.properties['bintray.key']
+
+	publications = ['mavenJava']
+	dryRun = false
+	publish = true
+	pkg {
+		repo = 'maven'
+		name = 'tagexp'
+		licenses = ['BSD 2-Clause']
+
+		version {
+			name = project.version
+			
+			mavenCentralSync {
+				sync = false
+			}
+		}
+	}
 }
 
 task wrapper(type: Wrapper) {
