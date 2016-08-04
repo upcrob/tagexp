@@ -15,9 +15,9 @@ repositories {
 dependencies {
 	testCompile 'junit:junit:4.8.2'
 
-	compile 'org.antlr:antlr:3.5.1'
+	compile 'org.antlr:antlr:3.5.2'
 
-	antlr 'org.antlr:antlr:3.5.1'
+	antlr 'org.antlr:antlr:3.5.2'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
