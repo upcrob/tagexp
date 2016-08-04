@@ -47,4 +47,4 @@ In order to use Tagexp in another program or build, the ANLTR 3 JAR will need to
 included on the classpath.  To add this JAR to a Gradle build from Maven Central,
 simply include the following dependency in your build script:
 
-	compile 'org.antlr:antlr:3.5.1'
+	compile 'org.antlr:antlr:3.5.2'
