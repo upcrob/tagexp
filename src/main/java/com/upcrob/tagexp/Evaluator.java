@@ -26,6 +26,7 @@ public class Evaluator {
 	 * @param expression Input expression String.
 	 * @param tags Input Collection of tag Strings.
 	 * @throws ParseException Thrown if the expression could not be parsed.
+	 * @return Expression result.
 	 */
 	public boolean evaluate(String expression, Collection<String> tags) {
 		// Evaluate, case-sensitive
@@ -41,6 +42,7 @@ public class Evaluator {
 	 * @param caseSensitive Toggles case-sensitivity of tag-search.  Note that
 	 *   a case-insensitive search may be slower.
 	 * @throws ParseException Thrown if the expression could not be parsed.
+	 * @return Expression result.
 	 */
 	public boolean evaluate(String expression, Collection<String> tags, boolean caseSensitive) {
 		// Verify arguments are non-null
